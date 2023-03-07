@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from django_admin_auth_emailpin.models import User
+from django_admin_auth_emailpin.models import User, PinCode
 
 
 class OrgUser(User):
@@ -16,3 +16,8 @@ class OrgUser(User):
     class Meta:
         verbose_name = _("Org user")
         verbose_name_plural = _("Org users")
+
+
+class Pin(PinCode):
+
+    pass

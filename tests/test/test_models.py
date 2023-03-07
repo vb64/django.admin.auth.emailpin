@@ -16,3 +16,12 @@ class TestsModels(TestBase):
 
         user = OrgUser(name='user@example.com', custom_email='')
         assert user.is_active
+        assert str(user) == 'user@example.com'
+
+    @staticmethod
+    def test_pin():
+        """Pin model."""
+        from example.models import Pin
+
+        pin = Pin.create('user@example.com')
+        assert 'user@example.com: ' in str(pin)
