@@ -1,8 +1,8 @@
 """Models definition."""
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-from django_admin_auth_emailpin import User
+from django_admin_auth_emailpin.models import User
 
 
 class OrgUser(User):
