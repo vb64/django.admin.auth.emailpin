@@ -7,6 +7,10 @@ from django_admin_auth_emailpin import User
 
 class OrgUser(User):
 
+    title_fld_name = _("Login")
+    title_fld_email = _("Custom email")
+    title_fld_active = _("Active")
+
     is_admin = models.BooleanField(verbose_name=_("Admin"), default=False)
 
     class Meta:

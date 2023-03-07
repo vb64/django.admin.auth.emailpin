@@ -14,5 +14,5 @@ class TestsModels(TestBase):
         """User model."""
         from example.models import OrgUser
 
-        # location = WithQuotas(name="with_quotas")
-        # assert str(location) == '"with_quotas"'
+        user = OrgUser(name='user@example.com', custom_email='')
+        assert user.is_active
