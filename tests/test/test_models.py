@@ -76,3 +76,18 @@ class TestsModels(TestBase):
         assert Pin.auth(OrgUser, user.name)
         assert len(self.sended_emails) == 1
         assert Pin.superuser_email() in self.sended_emails[-1][-2]
+
+    def test_is_valid(self):
+        """Method is_valid."""
+        from example.models import Pin, OrgUser
+
+        user = OrgUser(name='valid@example.com', custom_email='')
+        user.save()
+        assert Pin.auth(OrgUser, user.name)
+
+        pins = Pin.objects.filter(user_name=user.name)
+        assert len(pins) == 1
+
+        assert not Pin.is_valid('notexist', 'xxx')
+        assert not Pin.is_valid(user.name, 'xxx')
+        assert Pin.is_valid(user.name, pins[0].code)

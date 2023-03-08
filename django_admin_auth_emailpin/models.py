@@ -13,7 +13,7 @@ class User(models.Model):
     title_fld_active = "Active"
 
     name = models.CharField(verbose_name=title_fld_name, max_length=max_email_length)
-    custom_email = models.EmailField(verbose_name=title_fld_email, blank=True)
+    custom_email = models.EmailField(verbose_name=title_fld_email, blank=True, default='')
     is_active = models.BooleanField(verbose_name=title_fld_active, default=True)
 
     class Meta:
