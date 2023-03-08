@@ -42,3 +42,26 @@ class TestsModels(TestBase):
         with pytest.raises(NotImplementedError) as err:
             PinCode.mail_login(None, None)
         assert 'mail_login' in str(err.value)
+
+    def test_auth(self):
+        """Method auth."""
+        from example.models import Pin, OrgUser
+
+        assert not Pin.auth(OrgUser, 'notexist')
+        assert len(self.sended_emails) == 0
+
+        user = OrgUser(name='user@example.com', custom_email='')
+        user.save()
+
+        assert Pin.auth(OrgUser, user.name)
+        assert len(self.sended_emails) == 1
+
+        self.sended_emails.clear()
+        user.is_active = False
+        user.save()
+
+        assert not Pin.auth(OrgUser, user.name)
+        assert len(self.sended_emails) == 1
+
+        admin = OrgUser(name='admin', custom_email='')
+        admin.save()
