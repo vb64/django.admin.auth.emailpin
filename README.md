@@ -13,10 +13,11 @@ pip install django-admin-auth-emailpin
 
 ## Usage
 
-To send authorization codes, the regular way of sending email in Django is used.
+To send authorization codes, the regular way of [sending email in Django](https://docs.djangoproject.com/en/dev/topics/email/) is used.
 Therefore, in the `settings.py` file of your project, you must specify the details of the mail server used.
 
 ```python
+# settings.py
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

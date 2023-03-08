@@ -14,10 +14,11 @@ pip install django-admin-auth-emailpin
 
 ## Использование
 
-Для рассылки кодов авторизации используется штатный способ рассылки емайл в Django.
+Для рассылки кодов авторизации используется штатный способ [рассылки емайл в Django](https://docs.djangoproject.com/en/dev/topics/email/).
 Поэтому в файле `settings.py` вашего проекта необходимо указать данные используемого почтового сервера.
 
 ```python
+# settings.py
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
