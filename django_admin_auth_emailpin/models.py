@@ -29,6 +29,9 @@ class User(models.Model):
 class PinCode(models.Model):
     """PIN code for auth."""
 
+    email_host_user = 'django.admin.auth.emailpin@gmail.com'
+    email_host_password = 'xxxxxx'
+
     user_name = models.CharField(max_length=User.max_email_length)
     sent_date = models.DateTimeField(auto_now_add=True)
     code = models.CharField(max_length=6)
@@ -86,7 +89,10 @@ class PinCode(models.Model):
 
         if not user.is_active:
             fld_from, fld_subj, fld_body = cls.mail_inacive(user)
-            send_mail(fld_subj, fld_body, fld_from, mail_list, fail_silently=False)
+            send_mail(
+              fld_subj, fld_body, fld_from, mail_list, fail_silently=False,
+              auth_user=cls.email_host_user, auth_password=cls.email_host_password
+            )
             return False
 
         codes = cls.objects.filter(user_name=username)
@@ -97,7 +103,10 @@ class PinCode(models.Model):
             code.save()
 
         fld_from, fld_subj, fld_body = cls.mail_login(user, code)
-        send_mail(fld_subj, fld_body, fld_from, mail_list, fail_silently=False)
+        send_mail(
+          fld_subj, fld_body, fld_from, mail_list, fail_silently=False,
+          auth_user=cls.email_host_user, auth_password=cls.email_host_password
+        )
 
         return True
 
