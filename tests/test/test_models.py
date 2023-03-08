@@ -57,11 +57,22 @@ class TestsModels(TestBase):
         assert len(self.sended_emails) == 1
 
         self.sended_emails.clear()
+        user.custom_email = 'private@mail.com'
         user.is_active = False
         user.save()
 
         assert not Pin.auth(OrgUser, user.name)
         assert len(self.sended_emails) == 1
 
-        admin = OrgUser(name='admin', custom_email='')
-        admin.save()
+        self.sended_emails.clear()
+        user.is_active = True
+        user.save()
+        assert Pin.auth(OrgUser, user.name)
+        assert len(self.sended_emails) == 1
+
+        self.sended_emails.clear()
+        user.name = 'admin'
+        user.save()
+        assert Pin.auth(OrgUser, user.name)
+        assert len(self.sended_emails) == 1
+        assert Pin.superuser_email() in self.sended_emails[-1][-2]
