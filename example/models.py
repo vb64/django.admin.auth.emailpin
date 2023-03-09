@@ -21,8 +21,13 @@ class Pin(PinCode):
     email_from = 'noreply@example.com'
 
     @classmethod
-    def superuser_email(cls):
-        return 'admin@example.com'
+    def mail_secrets(cls):
+        """Return DB superuser email, SMTP login and password."""
+        return (
+          'admin@example.com',
+          'example.aadmin@gmail.com',
+          'smtp-password',
+        )
 
     @classmethod
     def mail_inacive(cls, user):
