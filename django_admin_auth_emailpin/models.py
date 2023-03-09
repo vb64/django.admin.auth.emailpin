@@ -29,9 +29,6 @@ class User(models.Model):
 class PinCode(models.Model):
     """PIN code for auth."""
 
-    email_host_user = 'django.admin.auth.emailpin@gmail.com'
-    email_host_password = 'xxxxxx'
-
     user_name = models.CharField(max_length=User.max_email_length)
     sent_date = models.DateTimeField(auto_now_add=True)
     code = models.CharField(max_length=6)
@@ -48,9 +45,9 @@ class PinCode(models.Model):
         return "{}: {}".format(self.user_name, self.code)
 
     @classmethod
-    def superuser_email(cls):
-        """Child class must return DB superuser email as string."""
-        raise NotImplementedError("{}.superuser_email".format(cls.__class__.__name__))
+    def mail_secrets(cls):
+        """Child class must return DB superuser email, SMTP login and password."""
+        raise NotImplementedError("{}.mail_secrets".format(cls.__class__.__name__))
 
     @classmethod
     def mail_inacive(cls, user):
@@ -79,8 +76,9 @@ class PinCode(models.Model):
 
         user = users[0]
         mail_list = []
+        superuser_email, host_user, host_password = cls.mail_secrets()
         if user.name == 'admin':
-            mail_list.append(cls.superuser_email())
+            mail_list.append(superuser_email)
         else:
             mail_list.append(user.name)
 
@@ -91,7 +89,7 @@ class PinCode(models.Model):
             fld_from, fld_subj, fld_body = cls.mail_inacive(user)
             send_mail(
               fld_subj, fld_body, fld_from, mail_list, fail_silently=False,
-              auth_user=cls.email_host_user, auth_password=cls.email_host_password
+              auth_user=host_user, auth_password=host_password
             )
             return False
 
@@ -105,7 +103,7 @@ class PinCode(models.Model):
         fld_from, fld_subj, fld_body = cls.mail_login(user, code)
         send_mail(
           fld_subj, fld_body, fld_from, mail_list, fail_silently=False,
-          auth_user=cls.email_host_user, auth_password=cls.email_host_password
+          auth_user=host_user, auth_password=host_password
         )
 
         return True

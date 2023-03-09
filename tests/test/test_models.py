@@ -32,8 +32,8 @@ class TestsModels(TestBase):
         from django_admin_auth_emailpin.models import PinCode
 
         with pytest.raises(NotImplementedError) as err:
-            PinCode.superuser_email()
-        assert 'superuser_email' in str(err.value)
+            PinCode.mail_secrets()
+        assert 'mail_secrets' in str(err.value)
 
         with pytest.raises(NotImplementedError) as err:
             PinCode.mail_inacive(None)
@@ -75,7 +75,7 @@ class TestsModels(TestBase):
         user.save()
         assert Pin.auth(OrgUser, user.name)
         assert len(self.sended_emails) == 1
-        assert Pin.superuser_email() in self.sended_emails[-1][-2]
+        assert Pin.mail_secrets()[0] in self.sended_emails[-1][-2]
 
     def test_is_valid(self):
         """Method is_valid."""
