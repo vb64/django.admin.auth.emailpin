@@ -1,8 +1,8 @@
 """Pytest session setup."""
 import sys
 import os
-import pytest
 import django
+import pytest
 
 
 def path_setup():

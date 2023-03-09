@@ -48,7 +48,7 @@ class TestsModels(TestBase):
         from example.models import Pin, OrgUser
 
         assert not Pin.auth(OrgUser, 'notexist')
-        assert len(self.sended_emails) == 0
+        assert not self.sended_emails
 
         user = OrgUser(name='user@example.com', custom_email='')
         user.save()
@@ -77,7 +77,8 @@ class TestsModels(TestBase):
         assert len(self.sended_emails) == 1
         assert Pin.mail_secrets()[0] in self.sended_emails[-1][-2]
 
-    def test_is_valid(self):
+    @staticmethod
+    def test_is_valid():
         """Method is_valid."""
         from example.models import Pin, OrgUser
 
