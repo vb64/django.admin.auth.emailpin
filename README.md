@@ -56,7 +56,7 @@ class Pin(PinCode):
 
 The following methods need to be defined in this model.
 
-### Метод mail_secrets
+### Method mail_secrets
 
 Returns a tuple of three elements specifying the parameters for accessing the mail server.
 
@@ -76,7 +76,7 @@ Returns a tuple of three elements specifying the parameters for accessing the ma
         )
 ```
 
-### Метод mail_inacive
+### Method mail_inacive
 
 Gets an instance of the user model that is denied access to the admin panel (the `is_active` field is set to False).
 
@@ -98,7 +98,7 @@ Returns a tuple of three elements specifying the parameters of the email that wi
         )
 ```
 
-### Метод mail_login
+### Method mail_login
 
 Gets the model instance of the user who requested authorization and the model instance of the authorization code generated for that user.
 
@@ -119,6 +119,8 @@ Returns a tuple of three elements defining the parameters of the email with auth
           "To login as {} use PIN code: {}".format(user, pin.code),
         )
 ```
+
+### User Authorizations
 
 To start authorization of a user named `username`, you need to call the `Pin.auth` method,
 passing it the model class and username.
