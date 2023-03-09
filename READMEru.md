@@ -139,13 +139,24 @@ class Pin(PinCode):
 # views.py
 from .models import MyUser, Pin
 
-    assert Pin.auth(MyUser, 'username')
+assert Pin.auth(MyUser, 'username')
 ```
 
 Для завершения авторизации нужно получить от пользователя значение высланного ему кода авторизации и вызвать метод `Pin.is_valid`.
 Этому методу следует передать имя авторизеумого пользователя и код авторизации.
 
 При использовании верного значения кода метод вернет значение `True` и использованный в вызове код авторизации станет невалидным.
+
+```python
+# views.py
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from .models import Pin
+
+if Pin.is_valid(username, code):
+    user = User.objects.filter(username=username)[0]
+    login(request, user)
+```
 
 ## Разработка
 

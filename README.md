@@ -137,13 +137,24 @@ the `Pin.auth` method will return `False`.
 # views.py
 from .models import MyUser, Pin
 
-    assert Pin.auth(MyUser, 'username')
+assert Pin.auth(MyUser, 'username')
 ```
 
 To complete the authorization, you need to get the value of the authorization code from the user and call the `Pin.is_valid` method.
 This method should be passed the name of the authorized user and the authorization code.
 
 If a valid code value is used, the method will return `True` and the authorization code used in the call will become invalid.
+
+```python
+# views.py
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from .models import Pin
+
+if Pin.is_valid(username, code):
+    user = User.objects.filter(username=username)[0]
+    login(request, user)
+```
 
 ## Development
 
