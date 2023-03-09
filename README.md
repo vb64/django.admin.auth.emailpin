@@ -1,4 +1,9 @@
 # DjangoAuthEmailPin library
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vb64/django.admin.auth.emailpin/pep257.yml?label=Pep257&style=plastic&branch=main)](https://github.com/vb64/django.admin.auth.emailpin/actions?query=workflow%3Apep257)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vb64/django.admin.auth.emailpin/django3.yml?label=Django%203.2.14%20Python%203.7-3.10&style=plastic&branch=main)](https://github.com/vb64/django.admin.auth.emailpin/actions?query=workflow%3Adjango3)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vb64/django.admin.auth.emailpin/django4.yml?label=Django%204.1.1%20Python%203.8-3.10&style=plastic&branch=main)](https://github.com/vb64/django.admin.auth.emailpin/actions?query=workflow%3Adjango4)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9f0c71798cf640e3975d29142939451f)](https://www.codacy.com/gh/vb64/django.admin.auth.emailpin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vb64/django.admin.auth.emailpin&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9f0c71798cf640e3975d29142939451f)](https://www.codacy.com/gh/vb64/django.admin.auth.emailpin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=vb64/django.admin.auth.emailpin&utm_campaign=Badge_Coverage)
 
 [In Russian](READMEru.md)
 
