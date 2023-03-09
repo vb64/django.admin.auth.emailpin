@@ -25,7 +25,7 @@ class Pin(PinCode):
         """Return DB superuser email, SMTP login and password."""
         return (
           'admin@example.com',
-          'example.aadmin@gmail.com',
+          'example.admin@gmail.com',
           'smtp-password',
         )
 
